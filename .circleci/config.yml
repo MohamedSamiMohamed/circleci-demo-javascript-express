@@ -22,7 +22,7 @@ jobs:
 
   reader-job: 
     docker: 
-      -image: circleci/node:10.6.3
+      - image: circleci/node:10.6.3
     steps:
       - run:
           name: trying-to-read-workspace
