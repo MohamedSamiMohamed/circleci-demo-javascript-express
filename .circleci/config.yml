@@ -31,7 +31,7 @@ jobs:
           at: /tmp/workspace2
       - run: |
           if [[ `cat /tmp/workspace2/output.txt` == "text to output here" ]]; then
-          echo "It worked!"
+          cat /tmp/workspace2/output.txt
           else
           echo "something went wrong!"
           fi
