@@ -28,10 +28,9 @@ jobs:
           name: trying-to-read-workspace
           command: echo "this job is supposed to find the output.txt file"
       - attach_workspace: 
-          at: /tmp/workspace
-      
+          at: /tmp/workspace2
       - run: |
-          if [[ `cat /tmp/workspace/output.txt` == "text to output here" ]]; then
+          if [[ `cat /tmp/workspace2/output.txt` == "text to output here" ]]; then
           echo "It worked!"
           else
           echo "something went wrong!"
