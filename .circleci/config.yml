@@ -20,21 +20,22 @@ jobs:
           paths: 
             - output.txt
 
-  # reader-job: 
-  #   docker: circleci/node:10.6.3
-  #   steps:
-  #     - run:
-  #         name: trying-to-read-workspace
-  #         command: echo "this job is supposed to find the output.txt file"
-  #     - attach_workspace: 
-  #         at: /tmp/workspace
+  reader-job: 
+    docker: 
+      -image: circleci/node:10.6.3
+    steps:
+      - run:
+          name: trying-to-read-workspace
+          command: echo "this job is supposed to find the output.txt file"
+      - attach_workspace: 
+          at: /tmp/workspace
       
-  #     - run: |
-  #         if [[ `cat /tmp/workspace/my-output-directory` == "text to output here"]]; then
-  #           echo "It worked!";
-  #           else
-  #           echo "something went wrong!"
-  #           fi
+      - run: |
+          if [[ `cat /tmp/workspace/output.txt` == "text to output here"]]; then
+            echo "It worked!";
+            else
+            echo "something went wrong!"
+            fi
   # build:
   #   working_directory: ~/mern-starter
   #   docker:
