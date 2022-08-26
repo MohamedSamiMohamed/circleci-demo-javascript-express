@@ -31,11 +31,11 @@ jobs:
           at: /tmp/workspace
       
       - run: |
-          if [[ `cat /tmp/workspace/output.txt` == "text to output here"]]; then
-            echo "It worked!";
-            else
-            echo "something went wrong!"
-            fi
+          if [[ `cat /tmp/workspace/output.txt` == "text to output here" ]]; then
+          echo "It worked!"
+          else
+          echo "something went wrong!"
+          fi
   # build:
   #   working_directory: ~/mern-starter
   #   docker:
