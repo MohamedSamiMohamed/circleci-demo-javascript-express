@@ -26,8 +26,8 @@ jobs:
     docker: circleci/node:10.6.3
     steps:
       - run:
-        name: trying-to-read-workspace
-        command: echo "this job is supposed to find the output.txt file"
+          name: trying-to-read-workspace
+          command: echo "this job is supposed to find the output.txt file"
       - attach_workspace: 
           at: /tmp/workspace
       
