@@ -74,6 +74,6 @@ workflows:
   main-workflow:
     jobs:
       - writer-job
-      # - reader-job:
-      #     requires:
-      #       - writer-job
+      - reader-job:
+          requires:
+            - writer-job
