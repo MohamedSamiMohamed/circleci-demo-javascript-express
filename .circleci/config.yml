@@ -6,7 +6,7 @@ version: 2.1
 jobs:
   writer-job:
     docker: 
-      - image: circleci/node:10.16.3
+      - image: circleci/node:13.8.0
     steps:
       - run:
           name: print-hello-to-text-file
@@ -22,7 +22,7 @@ jobs:
 
   reader-job: 
     docker: 
-      - image: circleci/node:10.6.3
+      - image: circleci/node:13.8.0
     steps:
       - run:
           name: trying-to-read-workspace
