@@ -92,7 +92,7 @@ jobs:
 workflows:
   main-workflow:
     jobs:
-      failure-job
+      - failure-job
       # - writer-job
       # - reader-job:
       #     requires:
