@@ -50,10 +50,10 @@ jobs:
       - run:
           name: fail-step
           command: return 1
-      -run: 
-        name: failure handler
-        command: echo "the failure has been handled successfully!"
-        when: on_fail
+      - run: 
+          name: failure handler
+          command: echo "the failure has been handled successfully!"
+          when: on_fail
 
   # build:
   #   working_directory: ~/mern-starter
