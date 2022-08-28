@@ -55,7 +55,6 @@ jobs:
       - run: 
           name: failure handler
           command: echo "the failure has been handled successfully!"
-          when: on_fail
 
   # build:
   #   working_directory: ~/mern-starter
