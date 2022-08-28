@@ -46,14 +46,14 @@ jobs:
   failure-job:
     docker:
       - image: circleci/node:13.8.0
-      steps:
-        - run:
-            name: fail-step
-            command: return 1
-        -run: 
-          name: failure handler
-          command: echo "the failure has been handled successfully!"
-          when: on_fail
+    steps:
+      - run:
+          name: fail-step
+          command: return 1
+      -run: 
+        name: failure handler
+        command: echo "the failure has been handled successfully!"
+        when: on_fail
 
   # build:
   #   working_directory: ~/mern-starter
