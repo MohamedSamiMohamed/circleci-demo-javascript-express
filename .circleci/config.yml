@@ -10,39 +10,50 @@ commands:
 
 
 jobs:
-  writer-job:
-    docker: 
-      - image: circleci/node:13.8.0
-    steps:
-      - print_pipeline_id
-      - run:
-          name: print-hello-to-text-file
-          command: |
-            cd /tmp
-            mkdir -p workspace
-            echo "text to output here" > workspace/output.txt
-            pwd
-      - persist_to_workspace:
-          root: /tmp/workspace
-          paths: 
-            - output.txt
+  # writer-job:
+  #   docker: 
+  #     - image: circleci/node:13.8.0
+  #   steps:
+  #     - print_pipeline_id
+  #     - run:
+  #         name: print-hello-to-text-file
+  #         command: |
+  #           cd /tmp
+  #           mkdir -p workspace
+  #           echo "text to output here" > workspace/output.txt
+  #           pwd
+  #     - persist_to_workspace:
+  #         root: /tmp/workspace
+  #         paths: 
+  #           - output.txt
 
-  reader-job: 
-    docker: 
+  # reader-job: 
+  #   docker: 
+  #     - image: circleci/node:13.8.0
+  #   steps:
+  #     - run:
+  #         name: trying-to-read-workspace
+  #         command: echo "this job is supposed to find the output.txt file"
+  #     - attach_workspace: 
+  #         at: /tmp/workspace2
+  #     - run: |
+  #         if [[ `cat /tmp/workspace2/output.txt` == "text to output here" ]]; then
+  #         cat /tmp/workspace2/output.txt
+  #         else
+  #         echo "something went wrong!"
+  #         fi
+  #     - print_pipeline_id
+  failure-job:
+    docker:
       - image: circleci/node:13.8.0
-    steps:
-      - run:
-          name: trying-to-read-workspace
-          command: echo "this job is supposed to find the output.txt file"
-      - attach_workspace: 
-          at: /tmp/workspace2
-      - run: |
-          if [[ `cat /tmp/workspace2/output.txt` == "text to output here" ]]; then
-          cat /tmp/workspace2/output.txt
-          else
-          echo "something went wrong!"
-          fi
-      - print_pipeline_id
+      steps:
+        - run:
+            name: fail-step
+            command: return 1
+        -run: 
+          name: failure handler
+          command: echo "the failure has been handled successfully!"
+          when: on_fail
 
   # build:
   #   working_directory: ~/mern-starter
@@ -81,7 +92,8 @@ jobs:
 workflows:
   main-workflow:
     jobs:
-      - writer-job
-      - reader-job:
-          requires:
-            - writer-job
+      failure-job
+      # - writer-job
+      # - reader-job:
+      #     requires:
+      #       - writer-job
