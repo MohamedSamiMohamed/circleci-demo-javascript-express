@@ -49,7 +49,9 @@ jobs:
     steps:
       - run:
           name: fail-step
-          command: return 1
+          command: |
+            echo "failure will happen now"
+            return 1
       - run: 
           name: failure handler
           command: echo "the failure has been handled successfully!"
